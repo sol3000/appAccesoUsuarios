@@ -1,0 +1,24 @@
+<!-- Contenedor que recoge el listado de los elementos del array empleados-->
+
+
+
+<div class="container">
+   
+    <div class="row">
+  
+        <div class="col">
+  
+          <!-- Indicamos los elementos a mostrar, listaEmpleado está declarada en el archivo
+            empleados.comonent.ts, e indicamos que propiedades  del objeto queremos mostrar. 
+            recogemos en la variable i el index: primer elemento
+            Como el primer elemento es 0 sumamos 1 para que el indice comience en 1 i+1-->
+          <div >
+  
+            {{i+1}}: {{listaEmpleado.nombre}} {{listaEmpleado.apellido}} {{listaEmpleado.cargo}} {{listaEmpleado.salario}}
+  
+          </div>
+  
+        </div>
+  
+    </div>
+</div>

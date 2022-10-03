@@ -1,0 +1,97 @@
+<h1 style="text-align : center">{{title}}</h1>
+<!-- con las {{texto}} realizamos interpolarización, importamos la información recogida en la variable con ese nombre
+   en el archivo app.component.ts  -->
+
+
+<div class="container">
+
+<form> <!-- Formulario para practicar la interpolarización, con [(ngModel)]... aplicamos Banana in Box-->
+
+  Nombre: <input type="text" name="nombre" [(ngModel)] = "nombre"><br/><br/>
+
+  Apellido: <input type="text" name="apellido" [(ngModel)] = "apellido"><br/><br/>
+
+  <input type="submit" class="btn btn-primary" value="Registrar" (click)="registrarUsuario()">
+
+</form>
+
+<!-- Con *ngIf... aplicamos la directiva para que si existe lo muestre y si no, muestre el contenido de  sinRegistrar-->
+<p *ngIf="registrado; else sinRegistrar">{{mensaje}} con el nombre de {{nombre}}  {{apellido}}</p>
+
+<ng-template #sinRegistrar>
+
+  <p>Usuario sin registrar</p>
+
+</ng-template>
+
+</div>
+
+<!-- Contenedor para recoger en un formulario un objeto "empleado" y agregarlo a un array de empleados-->
+
+<div class="container">
+
+  <div class="col"><h2>Registro de nuevo usuario</h2></div>
+
+  <form class="form-group row">
+
+    <div class="form-group col-md-3">
+
+      <label for="nombre">Nombre: </label>
+      <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control" [(ngModel)] = "cuadroNombre"><br/>
+      <!-- Con [ngModel]=nombre... hacemos interpolación, mostramos en el html el contenido de la 
+      propiedad creada en el archivo app.components.ts y también enviamos a dicho archivo 
+      la información que recogemos en cada input del formulario-->
+    </div>
+
+    <div class="form-group col-md-3">
+
+      <label for="apellido">Apellido: </label>
+      <input type="text" name="apellido" id="apellido" placeholder="Apellido" class="form-control" [(ngModel)] = "cuadroApellido"><br/>
+      
+    </div>
+    
+    <div class="form-group col-md-3">
+
+      <label for="cargo">Cargo: </label>
+      <input type="text" name="cargo" id="cargo" placeholder="Cargo" class="form-control" [(ngModel)] = "cuadroCargo"><br/>
+      
+    </div>
+
+    <div class="form-group col-md-3">
+
+      <label for="salario">Salario: </label>
+      <input type="text" name="salario" id="salario" placeholder="Salario" class="form-control" [(ngModel)] = "cuadroSalario"><br/>
+      
+    </div>
+
+
+    <!-- Al pulsar en el botón se llama a la función agregarEmpleado que añadirá un nuevo elemento al array
+    con los datos recogidos en cada input-->
+    <div class="col">
+      <button type="submit" class="btn btn-primary" style="margin-top: 20px" (click)="agregarEmpleado()">Agregar</button>
+    </div>
+
+   
+
+  </form>
+
+
+
+</div>
+
+<br/><br/>
+
+<div class="container">
+<h3>Listado de Usuarios</h3>
+
+ <!-- llamamos al hijo app-empleados:
+      Con la directiva *ngFor recorremos el array con un bucle for, recogerá cada empleado 
+      del array empleados, recogemos en la variable indice el index: primer elemento
+            Como el primer elemento es 0 sumamos 1 para que el indice comience en 1 indice+1-->
+<app-empleados *ngFor="let empleado of empleados; let indice=index" [listaEmpleado]="empleado" [i]="indice" ></app-empleados>
+
+ <!-- Con la directiva [listaEmpleado]="empleado"  e [i]="indice" indicamos que hace referencia 
+      a empleado ubicado en el archivo empleados.component.html, 
+      la variable i hace referencia a indice que seria el index: primer elemento-->
+
+</div>
